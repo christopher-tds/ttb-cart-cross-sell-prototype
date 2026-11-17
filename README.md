@@ -2,6 +2,8 @@
 
 A coded prototype of Cart Cross-Sell v4 (Asana task 1215926433505137). Sized products (ties, tie bars, belts, polos and sweaters) join the cart's "Complete The Look" row. Their "Add to cart" opens a size sheet inside the drawer. It's built from `tds-prototype-starter`, shows design intent only and isn't meant to port to Hydrogen.
 
+**Live:** https://christopher-tds.github.io/ttb-cart-cross-sell-prototype/ (GitHub Pages; a push to `main` rebuilds it through `.github/workflows/pages.yml`). The licensed fonts aren't in the repo, so the live page uses the Roboto fallbacks.
+
 ```bash
 npm install     # or reuse node_modules
 npm run dev     # http://localhost:5198
