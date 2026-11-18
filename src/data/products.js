@@ -91,5 +91,13 @@ export const RECS = {
 
 export const START_CART = [{ id: "tie-1861-0054", size: "Modern", qty: 1 }];
 
+// Review preset: four separate lines, the case that made the whole drawer scroll (2026-11-18).
+export const FULL_CART = [
+  { id: "tie-5934-0251", size: "Modern", qty: 1 },
+  { id: "blt-5572-0079", size: "Medium", qty: 1 },
+  { id: "pcs-3647-0054", size: null, qty: 1 },
+  { id: "tie-1861-0054", size: "Modern", qty: 1 },
+];
+
 // Live: "You're only $71 from free shipping!" with $28 in the cart.
 export const FREE_SHIPPING = 99;

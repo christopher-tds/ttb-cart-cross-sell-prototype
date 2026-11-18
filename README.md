@@ -15,7 +15,8 @@ npm run dev     # http://localhost:5198
 |---|---|
 | Control / Variant | The 50/50 test arms. Control is v3 as it works on the live site today; Variant is v4 |
 | Step 1 / Step 3 | How many cards the variant's arrows move. Step 3 (preferred, 2026-11-17) stops at cards 1, 4, 7 and the row's end, the same going back. Control stays at 1. Live arrow step not measured |
-| States | Forces edge cases: every size sold out (sweater), sale price (navy grenadine tie), the add failing once, no recommendations. Reset cart |
+| Recs pinned / Scroll all | Variant only. Recs pinned (2026-11-18): only the cart lines scroll; the header, shipping bar, "Complete The Look" and footer stay put, with the recs' top rule as the only edge. Under 720px tall the whole drawer scrolls, as live. Scroll all is live v3. Control always scrolls all |
+| States | Forces edge cases: every size sold out (sweater), sale price (navy grenadine tie), the add failing once, no recommendations. Reset cart, or "4 items" for a cart that scrolls |
 | Desktop / Tablet / Mobile | Frames at true size: 800 × 1180 and 393 × 852 |
 | Motion | Timings for the rec refresh and the sheet slide, with Copy CSS to hand them over |
 

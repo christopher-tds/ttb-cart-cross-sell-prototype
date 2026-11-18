@@ -10,7 +10,7 @@ import { money, money2 } from "../settings.js";
 // 40px gray close), free-shipping box with a leaf progress bar, line items, then "Complete The Look" just
 // above the sticky footer (subtotal, 52px "Checkout now", "Continue shopping"). Copy is kept as live,
 // title case included.
-export default function CartDrawer({ open, arm, step, cart, recs, getProduct, onClose, onQty, onRemove, onQuickAdd,
+export default function CartDrawer({ open, arm, step, layout = "scroll", cart, recs, getProduct, onClose, onQty, onRemove, onQuickAdd,
   sheetId, onOpenSheet, onSheetClosed, failNext, newKey }) {
   const subtotal = cart.reduce((s, l) => s + getProduct(l.id).price * l.qty, 0);
   const count = cart.reduce((s, l) => s + l.qty, 0);
@@ -27,7 +27,7 @@ export default function CartDrawer({ open, arm, step, cart, recs, getProduct, on
   const left = Math.max(0, FREE_SHIPPING - subtotal);
 
   return (
-    <div className={`drawer${open ? " is-open" : ""}`} aria-hidden={!open}>
+    <div className={`drawer${open ? " is-open" : ""}`} data-layout={layout} aria-hidden={!open}>
       <div className="drawer__scrim" onClick={onClose} />
       <aside className="drawer__panel" role="dialog" aria-modal="true" aria-label="Your Cart">
         <div className="drawer__scroll" ref={body} inert={!!sheetId || undefined}>
@@ -48,7 +48,7 @@ export default function CartDrawer({ open, arm, step, cart, recs, getProduct, on
             </div>
           </div>
 
-          <ul className="lines" aria-label="Items in your cart">
+          <ul className="lines" aria-label="Items in your cart" tabIndex={layout === "pinned" ? 0 : undefined}>
             {cart.map((l) => {
               const p = getProduct(l.id);
               return (

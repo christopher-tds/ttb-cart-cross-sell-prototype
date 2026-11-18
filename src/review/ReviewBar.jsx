@@ -5,7 +5,7 @@ import { FLAGS } from "../settings.js";
 
 // Review tools, not design: test arm, forced edge-case states, viewport, motion tuner, reset.
 // Hidden inside the device frames and on ?clean.
-export default function ReviewBar({ settings, onChange, onReset }) {
+export default function ReviewBar({ settings, onChange, onReset, onFill }) {
   const [statesOpen, setStatesOpen] = useState(false);
   const { arm, flags } = settings;
   const toggle = (f) => {
@@ -23,6 +23,10 @@ export default function ReviewBar({ settings, onChange, onReset }) {
         <button type="button" aria-pressed={settings.step === 1} onClick={() => onChange({ step: 1 })} title="Variant arrows move one card">Step 1</button>
         <button type="button" aria-pressed={settings.step === 3} onClick={() => onChange({ step: 3 })} title="Variant arrows move three cards">Step 3</button>
       </div>
+      <div className="vp-panel" role="group" aria-label="Drawer scroll">
+        <button type="button" aria-pressed={settings.layout === "pinned"} onClick={() => onChange({ layout: "pinned" })} title="Variant: only the cart lines scroll; recs and footer stay put">Recs pinned</button>
+        <button type="button" aria-pressed={settings.layout === "scroll"} onClick={() => onChange({ layout: "scroll" })} title="Variant: the whole drawer scrolls, as live">Scroll all</button>
+      </div>
       <section className="tuner">
         <button type="button" className="tuner__toggle" aria-expanded={statesOpen} onClick={() => setStatesOpen((o) => !o)}>
           States{flags.size ? ` · ${flags.size}` : ""}
@@ -36,7 +40,7 @@ export default function ReviewBar({ settings, onChange, onReset }) {
             </label>
           ))}
           <p className="tuner__hint">Always on: Belt “Large” and Hunter Green tie “Traditional” are sold out.</p>
-          <div className="tuner__actions"><button type="button" onClick={onReset}>Reset cart</button></div>
+          <div className="tuner__actions"><button type="button" onClick={onReset}>Reset cart</button> <button type="button" onClick={onFill}>4 items</button></div>
         </div>
       </section>
       <ViewportSwitcher />

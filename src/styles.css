@@ -287,3 +287,16 @@ a { color: inherit; }
 .tuner__actions { display: flex; gap: 8px; margin-top: 12px; }
 .tuner__actions button { flex: 1; min-height: 32px; border: 0; border-radius: 999px; background: #ecebe8; color: #2c2a26; font: inherit; font-weight: 500; cursor: pointer; }
 @media (max-width: 799px) { .review-bar, .vp-stage { display: none !important; } .vp-framed, .vp-framed body { overflow: auto; } }
+
+/* ============ Variant test (2026-11-18): only the cart lines scroll ============
+   The header, shipping bar, "Complete The Look" and the footer stay put; the lines list takes what's left
+   and scrolls on its own. The recs' top rule is the only edge: no gap, no scroll shadow (cut 2026-11-18),
+   so a line cut off at the rule is the cue that the list scrolls. On short screens the list would shrink
+   below one line, so under 720px tall the whole drawer scrolls again, as live. */
+@media (min-height: 720px) {
+  .drawer[data-layout="pinned"] .drawer__scroll { overflow: hidden; }
+  .drawer[data-layout="pinned"] .lines { flex: 1 1 auto; min-height: 120px; overflow-y: auto; overscroll-behavior: contain; }
+  .drawer[data-layout="pinned"] .lines:focus-visible { outline-offset: -2px; }
+  .drawer[data-layout="pinned"] .line:last-child { border-bottom: 0; } /* the recs rule takes its place */
+  .drawer[data-layout="pinned"] .recs { flex: none; margin-top: 0; }
+}

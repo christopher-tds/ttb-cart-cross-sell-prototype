@@ -14,15 +14,17 @@ export function readSettings() {
   return {
     arm: p.get("arm") === "control" ? "control" : "variant",
     drawer: p.get("drawer") !== "0",
-    step: p.get("step") === "1" ? 1 : 3, // cards per arrow click in the variant; 3 preferred (2026-11-17). Live step not measured
+    step: p.get("step") === "1" ? 1 : 3,
+    layout: p.get("layout") === "scroll" ? "scroll" : "pinned", // variant only: "pinned" scrolls the lines, keeps recs + footer fixed (2026-11-18 test) // cards per arrow click in the variant; 3 preferred (2026-11-17). Live step not measured
     flags: new Set(flags),
   };
 }
 
-export function writeSettings({ arm, flags, step }) {
+export function writeSettings({ arm, flags, step, layout }) {
   const url = new URL(location.href);
   url.searchParams.set("arm", arm);
   url.searchParams.set("step", step);
+  url.searchParams.set("layout", layout);
   if (flags.size) url.searchParams.set("states", [...flags].join(",")); else url.searchParams.delete("states");
   history.replaceState(null, "", url);
 }

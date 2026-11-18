@@ -4,7 +4,7 @@ import PdpBackdrop from "./components/PdpBackdrop.jsx";
 import CartDrawer from "./components/CartDrawer.jsx";
 import ReviewBar from "./review/ReviewBar.jsx";
 import { showReviewBar } from "./review/config.js";
-import { START_CART } from "./data/products.js";
+import { START_CART, FULL_CART } from "./data/products.js";
 import { product, recIds } from "./catalog.js";
 import { readSettings, writeSettings } from "./settings.js";
 import { delay, ms } from "./motion.js";
@@ -75,7 +75,7 @@ export default function App() {
   };
 
   const update = (next) => { const s = { ...settings, ...next }; writeSettings(s); setSettings(s); };
-  const reset = () => { setCart(withKeys(START_CART)); setSheetId(null); setNewKey(null); failed.current = false; setOpen(true); };
+  const reset = (lines = START_CART) => { setCart(withKeys(lines)); setSheetId(null); setNewKey(null); failed.current = false; setOpen(true); };
 
   return (
     <>
@@ -84,13 +84,13 @@ export default function App() {
         <SiteHeader count={count} onBag={() => setOpen(true)} />
         <PdpBackdrop onAdd={(size) => { addLine("tie-1861-0054", size); setOpen(true); }} />
       </div>
-      <CartDrawer open={open} arm={arm} step={arm === "control" ? 1 : settings.step} cart={cart} recs={recs} getProduct={getProduct} newKey={newKey}
+      <CartDrawer open={open} arm={arm} step={arm === "control" ? 1 : settings.step} layout={arm === "control" ? "scroll" : settings.layout} cart={cart} recs={recs} getProduct={getProduct} newKey={newKey}
         onClose={() => { setOpen(false); setSheetId(null); }}
         onQty={(key, d) => setCart((c) => c.map((l) => (l.key === key ? { ...l, qty: Math.max(1, l.qty + d) } : l)))}
         onRemove={(key) => setCart((c) => c.filter((l) => l.key !== key))}
         onQuickAdd={quickAdd} sheetId={sheetId} onOpenSheet={openSheet} onSheetClosed={sheetClosed} failNext={failNext} />
       <div className="sr-only" aria-live="polite">{message}</div>
-      {showReviewBar && <ReviewBar settings={settings} onChange={update} onReset={reset} />}
+      {showReviewBar && <ReviewBar settings={settings} onChange={update} onReset={() => reset()} onFill={() => reset(FULL_CART)} />}
     </>
   );
 }
