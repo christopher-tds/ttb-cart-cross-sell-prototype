@@ -8,6 +8,10 @@
 @font-face { font-family: "TB Poynter"; src: url("/fonts/PoynterGothicText.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "TB Poynter"; src: url("/fonts/PoynterGothicTextBold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
 @font-face { font-family: "TB Poynter Condensed"; src: url("/fonts/PoynterGothicTextBoldCondensed.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+/* Published fallback for Poynter Condensed. The licensed fonts aren't in the public repo, and plain Roboto
+   Condensed sets caps about 13% wider, so "ADD TO CART" overflowed the 116px rec card. Scaled to Poynter's cap
+   width (69px for "ADD TO CART" at 14px). Roboto Condensed is open-licensed. */
+@font-face { font-family: "TB Cond Fallback"; src: url("./assets/fonts/RobotoCondensed-Bold-latin.woff2") format("woff2"); font-weight: 700; font-display: swap; size-adjust: 88.7%; }
 
 :root {
   /* Hydrogen color tokens (TB-5) */
@@ -28,7 +32,7 @@
   --helper-red: #980402;
 
   --font-poynter: "TB Poynter", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-cond: "TB Poynter Condensed", "Roboto Condensed", "Arial Narrow", sans-serif;
+  --font-cond: "TB Poynter Condensed", "TB Cond Fallback", "Roboto Condensed", "Arial Narrow", sans-serif;
   --font-belizio: "TB Belizio", "Roboto Slab", Georgia, serif;
 
   /* Motion. --rec-* and --sheet-slide are Tuner variables. */
