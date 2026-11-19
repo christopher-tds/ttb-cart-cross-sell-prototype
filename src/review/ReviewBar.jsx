@@ -19,14 +19,6 @@ export default function ReviewBar({ settings, onChange, onReset, onFill }) {
         <button type="button" aria-pressed={arm === "control"} onClick={() => onChange({ arm: "control" })} title="v3 as live today">Control</button>
         <button type="button" aria-pressed={arm === "variant"} onClick={() => onChange({ arm: "variant" })} title="v4 with the size sheet">Variant</button>
       </div>
-      <div className="vp-panel" role="group" aria-label="Cards per arrow click">
-        <button type="button" aria-pressed={settings.step === 1} onClick={() => onChange({ step: 1 })} title="Variant arrows move one card">Step 1</button>
-        <button type="button" aria-pressed={settings.step === 3} onClick={() => onChange({ step: 3 })} title="Variant arrows move three cards">Step 3</button>
-      </div>
-      <div className="vp-panel" role="group" aria-label="Drawer scroll">
-        <button type="button" aria-pressed={settings.layout === "pinned"} onClick={() => onChange({ layout: "pinned" })} title="Variant: only the cart lines scroll; recs and footer stay put">Recs pinned</button>
-        <button type="button" aria-pressed={settings.layout === "scroll"} onClick={() => onChange({ layout: "scroll" })} title="Variant: the whole drawer scrolls, as live">Scroll all</button>
-      </div>
       <section className="tuner">
         <button type="button" className="tuner__toggle" aria-expanded={statesOpen} onClick={() => setStatesOpen((o) => !o)}>
           States{flags.size ? ` · ${flags.size}` : ""}

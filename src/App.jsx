@@ -13,6 +13,8 @@ import { delay, ms } from "./motion.js";
 const newId = () => crypto.randomUUID();
 const withKeys = (lines) => lines.map((l) => ({ ...l, key: newId() }));
 
+// Variant decisions (2026-11-19): arrows move 3 cards per click, and the recs + footer stay pinned while only the
+// cart lines scroll. Control stays live v3: 1 card per click, the whole drawer scrolls.
 export default function App() {
   const [settings, setSettings] = useState(readSettings);
   const [cart, setCart] = useState(() => withKeys(START_CART));
@@ -84,7 +86,7 @@ export default function App() {
         <SiteHeader count={count} onBag={() => setOpen(true)} />
         <PdpBackdrop onAdd={(size) => { addLine("tie-1861-0054", size); setOpen(true); }} />
       </div>
-      <CartDrawer open={open} arm={arm} step={arm === "control" ? 1 : settings.step} layout={arm === "control" ? "scroll" : settings.layout} cart={cart} recs={recs} getProduct={getProduct} newKey={newKey}
+      <CartDrawer open={open} arm={arm} step={arm === "control" ? 1 : 3} layout={arm === "control" ? "scroll" : "pinned"} cart={cart} recs={recs} getProduct={getProduct} newKey={newKey}
         onClose={() => { setOpen(false); setSheetId(null); }}
         onQty={(key, d) => setCart((c) => c.map((l) => (l.key === key ? { ...l, qty: Math.max(1, l.qty + d) } : l)))}
         onRemove={(key) => setCart((c) => c.filter((l) => l.key !== key))}

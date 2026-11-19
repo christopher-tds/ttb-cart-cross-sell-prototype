@@ -155,7 +155,7 @@ a { color: inherit; }
 
 /* Rec row: "Complete The Look" */
 .recs { margin: 16px var(--drawer-pad) 0; border-top: 1px solid var(--gray-30); }
-.recs__head { display: flex; align-items: center; justify-content: space-between; margin: 16px 0 12px; }
+.recs__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 16px 0 12px; }
 .recs__title { padding: 4px 0; font: 500 18px/20px var(--font-belizio); letter-spacing: -0.3px; color: var(--brand-ink); }
 .recs__arrows { display: flex; gap: 4px; }
 /* v4: the heading's cap height is centered on the arrows (measured within 0.5px). Live v3 sits the arrows

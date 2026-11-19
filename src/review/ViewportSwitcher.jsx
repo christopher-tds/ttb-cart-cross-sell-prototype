@@ -3,11 +3,12 @@ import { createPortal } from "react-dom";
 
 // Desktop shows the page as is; Tablet and Mobile load the same page in a frame at true device size
 // (never scaled), so the real 800 / 1000 breakpoints apply. The frame carries the current URL settings.
-// Tablet is 800 wide, TB's sm-md breakpoint (TB-6), as the Figma frames will be.
+// Tablet is 800 wide, TB's sm-md breakpoint (TB-6), as the Figma frames will be. Mobile is 360, the smallest mobile width.
 const DEVICES = {
   desktop: { label: "Desktop" },
   tablet: { label: "Tablet", w: 800, h: 1180 },
-  mobile: { label: "Mobile", w: 393, h: 852 },
+  mobile: { label: "Mobile 360", w: 360, h: 800 }, // smallest mobile width (2026-11-19, replaces 320); 360 × 800 is the common small Android
+  phone: { label: "393", w: 393, h: 852 }, // typical-phone check (iPhone 16)
 };
 const KEY = "ttb-cart-viewport";
 

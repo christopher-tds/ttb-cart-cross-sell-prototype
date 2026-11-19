@@ -14,10 +14,10 @@ npm run dev     # http://localhost:5198
 | Control | What it does |
 |---|---|
 | Control / Variant | The 50/50 test arms. Control is v3 as it works on the live site today; Variant is v4 |
-| Step 1 / Step 3 | How many cards the variant's arrows move. Step 3 (preferred, 2026-11-17) stops at cards 1, 4, 7 and the row's end, the same going back. Control stays at 1. Live arrow step not measured |
-| Recs pinned / Scroll all | Variant only. Recs pinned (2026-11-18): only the cart lines scroll; the header, shipping bar, "Complete The Look" and footer stay put, with the recs' top rule as the only edge. Under 720px tall the whole drawer scrolls, as live. Scroll all is live v3. Control always scrolls all |
+| Arrow step | Decided 2026-11-19: the variant's arrows move 3 cards per click, stopping at cards 1, 4, 7 and the row's end, the same going back. Control stays at 1 (live step not measured) |
+| Pinned recs | Decided 2026-11-19: in the variant only the cart lines scroll; the header, shipping bar, "Complete The Look" and footer stay put, with the recs' top rule as the only edge. Under 720px tall the whole drawer scrolls, as live. Control scrolls the whole drawer, as live |
 | States | Forces edge cases: every size sold out (sweater), sale price (navy grenadine tie), the add failing once, no recommendations. Reset cart, or "4 items" for a cart that scrolls |
-| Desktop / Tablet / Mobile | Frames at true size: 800 × 1180 and 393 × 852 |
+| Desktop / Tablet / Mobile 360 / 393 | Frames at true size: 800 × 1180, 360 × 800 (the smallest mobile width) and 393 × 852 (phone check) |
 | Motion | Timings for the rec refresh and the sheet slide, with Copy CSS to hand them over |
 
 Settings live in the URL (`?arm=control&states=sale,addError`). `?clean` hides the bar; `?drawer=0` starts with the cart closed.
@@ -28,6 +28,7 @@ Settings live in the URL (`?arm=control&states=sale,addError`). `?clean` hides t
 |---|---|
 | Pattern B, the size sheet | Chosen over an inline card swap after the wireframe review |
 | Reuse the PDP cross-sell sheet as is | Summary card, size dropdown ("Select", no default), quantity, "Select size" → "Add to cart - $58" |
+| 360 is the smallest mobile width | Decided 2026-11-19 (replaces 320). The live 340 drawer fits with 20px of page showing, so nothing changes below 393: same drawer, cards and sheet |
 | Mobile matches the PDP | No grabber or close button; the header is visually hidden. A tap on the dimmed area or Esc closes it |
 | Heading aligned with the arrows | "Complete The Look" is centered on the < > arrows (cap height within 0.5px). Live v3 sits the arrows 7px lower; the control arm keeps that |
 | 800 and up: docked in the drawer | Same panel at the bottom of the drawer, with the PDP header (title + close), instead of the PDP's centered modal |
@@ -36,7 +37,7 @@ Settings live in the URL (`?arm=control&states=sale,addError`). `?clean` hides t
 
 [TTB Design System › "Cart / Cross-Sell v4"](https://www.figma.com/design/ZTcjdmCwmWRjVy5OMtV7xg/?node-id=3587-12), built 2026-11-17 from this prototype:
 - **01 · Components:** rec card (Default, Adding, Sold out, Sale), line item, header, shipping bar, rec-row heading (v4 and v3), footer, and the size sheet (Mobile and Docked × 5 states)
-- **02–04 · Screens:** 1440, 800 and 393, each in three states (Cart, Size sheet, Added)
+- **02–04 · Screens:** 1440, 800 and 393 (360 frames to come), each in three states (Cart, Size sheet, Added). 05 and 06 are still at 393
 - **05 · Edge states**
 - **06 · Control vs variant**
 
